@@ -1,0 +1,82 @@
+@page "/powershell-demo"
+@inject PowerShellService PowerShellService
+
+<PageTitle>PowerShell Demo - PSCenter</PageTitle>
+
+<MudStack Spacing="4">
+    <div>
+        <MudText Typo="Typo.h3">PowerShell Script Demo</MudText>
+        <MudText Typo="Typo.body1" Color="Color.Secondary">
+            Run the bundled Scripts/Demo.ps1 file and display stdout, stderr, and the process exit code.
+        </MudText>
+    </div>
+
+    <MudPaper Class="psc-card pa-5" Elevation="0">
+        <MudStack Spacing="3">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                <MudIcon Icon="@Icons.Material.Filled.Terminal" Color="Color.Primary" />
+                <MudText Typo="Typo.h6">Scripts/Demo.ps1</MudText>
+            </MudStack>
+
+            <MudText Typo="Typo.body2">
+                This first demo is intentionally read-only. It collects the host name, current user,
+                operating system, PowerShell edition/version, and current time.
+            </MudText>
+
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Disabled="_running"
+                       StartIcon="@Icons.Material.Filled.PlayArrow"
+                       OnClick="RunDemoAsync">
+                @(_running ? "Running..." : "Run PowerShell Script")
+            </MudButton>
+
+            @if (_running)
+            {
+                <MudProgressLinear Indeterminate="true" Color="Color.Primary" />
+            }
+        </MudStack>
+    </MudPaper>
+
+    @if (_result is not null)
+    {
+        <MudAlert Severity="@(_result.ExitCode == 0 ? Severity.Success : Severity.Error)"
+                  Variant="Variant.Outlined">
+            Executable: @_result.Executable &nbsp;|&nbsp;
+            Exit code: @_result.ExitCode &nbsp;|&nbsp;
+            Duration: @_result.Duration.TotalMilliseconds.ToString("N0") ms
+        </MudAlert>
+
+        <MudPaper Class="psc-console pa-4" Elevation="0">
+            <MudText Typo="Typo.overline">OUTPUT</MudText>
+            <pre>@_result.Output</pre>
+
+            @if (!string.IsNullOrWhiteSpace(_result.Error))
+            {
+                <MudDivider Class="my-4" />
+                <MudText Typo="Typo.overline" Color="Color.Error">ERROR</MudText>
+                <pre class="error-output">@_result.Error</pre>
+            }
+        </MudPaper>
+    }
+</MudStack>
+
+@code {
+    private bool _running;
+    private PowerShellExecutionResult? _result;
+
+    private async Task RunDemoAsync()
+    {
+        _running = true;
+        _result = null;
+
+        try
+        {
+            _result = await PowerShellService.RunDemoAsync();
+        }
+        finally
+        {
+            _running = false;
+        }
+    }
+}

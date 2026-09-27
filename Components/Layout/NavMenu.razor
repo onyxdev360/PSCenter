@@ -1,0 +1,33 @@
+<div class="psc-brand">
+    <MudIcon Icon="@Icons.Material.Filled.Terminal" Size="Size.Large" Color="Color.Primary" />
+    <div>
+        <MudText Typo="Typo.subtitle1">PSCenter</MudText>
+        <MudText Typo="Typo.caption" Color="Color.Secondary">Admin tools</MudText>
+    </div>
+</div>
+
+<MudDivider />
+
+<MudNavMenu Class="pa-3">
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">
+        Dashboard
+    </MudNavLink>
+
+    <MudNavGroup Title="PowerShell"
+                 Icon="@Icons.Material.Filled.Terminal"
+                 Expanded="true">
+        <MudNavLink Href="/powershell-demo" Icon="@Icons.Material.Filled.PlayArrow">
+            Script Demo
+        </MudNavLink>
+    </MudNavGroup>
+
+    <MudNavGroup Title="Administration"
+                 Icon="@Icons.Material.Filled.AdminPanelSettings">
+        <MudNavLink Href="/coming-soon/users" Icon="@Icons.Material.Filled.Person">
+            User Tools
+        </MudNavLink>
+        <MudNavLink Href="/coming-soon/network" Icon="@Icons.Material.Filled.Lan">
+            Network Tools
+        </MudNavLink>
+    </MudNavGroup>
+</MudNavMenu>

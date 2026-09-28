@@ -1,0 +1,21 @@
+@page "/coming-soon/{Area}"
+
+<PageTitle>@Area - PSCenter</PageTitle>
+
+<MudPaper Class="psc-card pa-6" Elevation="0">
+    <MudIcon Icon="@Icons.Material.Filled.Construction" Size="Size.Large" Color="Color.Warning" />
+    <MudText Typo="Typo.h4" Class="mt-3">@DisplayArea</MudText>
+    <MudText Typo="Typo.body1" Color="Color.Secondary">
+        The navigation route is in place. This is ready for the next administrative workflow.
+    </MudText>
+</MudPaper>
+
+@code {
+    [Parameter]
+    public string Area { get; set; } = string.Empty;
+
+    private string DisplayArea =>
+        string.IsNullOrWhiteSpace(Area)
+            ? "Coming Soon"
+            : $"{char.ToUpperInvariant(Area[0])}{Area[1..]} Tools";
+}

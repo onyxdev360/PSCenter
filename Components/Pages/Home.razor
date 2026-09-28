@@ -1,0 +1,62 @@
+@page "/"
+@attribute [StreamRendering]
+
+<PageTitle>PSCenter</PageTitle>
+
+<MudStack Spacing="4">
+    <div>
+        <MudText Typo="Typo.h3" GutterBottom="true">Administration without the console clutter.</MudText>
+        <MudText Typo="Typo.h6" Color="Color.Secondary">
+            Electron.NET desktop shell, Blazor UI, MudBlazor components, and PowerShell where it actually helps.
+        </MudText>
+    </div>
+
+    <MudGrid>
+        <MudItem xs="12" md="4">
+            <MudPaper Class="psc-card pa-5" Elevation="0">
+                <MudIcon Icon="@Icons.Material.Filled.DesktopWindows" Size="Size.Large" Color="Color.Primary" />
+                <MudText Typo="Typo.h6" Class="mt-3">Desktop Shell</MudText>
+                <MudText Typo="Typo.body2">
+                    ElectronNET.Core hosts the ASP.NET Core application in a desktop window.
+                </MudText>
+            </MudPaper>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudPaper Class="psc-card pa-5" Elevation="0">
+                <MudIcon Icon="@Icons.Material.Filled.Web" Size="Size.Large" Color="Color.Secondary" />
+                <MudText Typo="Typo.h6" Class="mt-3">Web UI</MudText>
+                <MudText Typo="Typo.body2">
+                    Build the interface with Razor components, HTML/CSS concepts, and MudBlazor.
+                </MudText>
+            </MudPaper>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudPaper Class="psc-card pa-5" Elevation="0">
+                <MudIcon Icon="@Icons.Material.Filled.Terminal" Size="Size.Large" Color="Color.Success" />
+                <MudText Typo="Typo.h6" Class="mt-3">PowerShell Backend</MudText>
+                <MudText Typo="Typo.body2">
+                    Execute controlled scripts through a C# service and return structured results to the UI.
+                </MudText>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+
+    <MudPaper Class="psc-card pa-6" Elevation="0">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+            <div>
+                <MudText Typo="Typo.h5">Try the PowerShell integration</MudText>
+                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                    The demo script reports basic machine and PowerShell information.
+                </MudText>
+            </div>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Filled.PlayArrow"
+                       Href="/powershell-demo">
+                Open Demo
+            </MudButton>
+        </MudStack>
+    </MudPaper>
+</MudStack>
